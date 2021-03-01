@@ -6,12 +6,12 @@
 
 <br>
 
-<h2> <strong> 🚀 Tecnologias utilizadas no projeto: </strong> </h2>
+<h2> <strong> 🚀 Technologies used in the project: </strong> </h2>
 
  - HTML
  - CSS
  - JS
 
-<h2> <strong> 💻 Aplicação: </strong></h2>
+<h2> <strong> 💻 App: </strong></h2>
 
 - O projeto Dev.finance$ foi desenvolvido para controle financeiro, no qual se é possível adicionar ou excluir transações e ver o saldo de entrada e saída 💰
