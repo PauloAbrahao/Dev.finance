@@ -15,3 +15,5 @@
 <h2> <strong> 💻 App: </strong></h2>
 
 - O projeto Dev.finance$ foi desenvolvido para controle financeiro, no qual se é possível adicionar ou excluir transações e ver o saldo de entrada e saída 💰
+- The Dev.finance $ project was developed for financial control, in which it is possible to add or delete transactions and see the balance of inflows and outflows 💰
+
