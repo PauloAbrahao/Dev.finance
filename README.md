@@ -13,4 +13,5 @@
  - JS
 
 <h2> <strong> 🚀 Aplicação: </strong></h2>
+
 - O projeto Dev.finance$ foi desenvolvido para controle financeiro, no qual se é possível adicionar ou excluir transações e ver o saldo de entrada e saída 💰
