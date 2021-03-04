@@ -5,6 +5,8 @@
     --light-pink: #969cb3;
     --income-green: #12a454;
     --expense-red: #e92929;
+    --color-button: #49AA26;
+    --color-button-hover: #3dd705; 
 }
 
 * {
@@ -13,9 +15,27 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 92.75%; /* 15px */
+}
+
 body {
     background: #f0f2f5;
     font-family: 'Poppins', sans-serif;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+
+    /* Dicas para tirar a visibilidade de alguns textos sem prejudicar os leitores de tela */
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 .container {
@@ -24,13 +44,28 @@ body {
     margin: auto;
 }
 
-/* ---------------------Titles */
+/* --------------------- Titles */
 h2 {
     margin-top: 3.2rem;
     margin-bottom: 0.8rem;
     color: var(--dark-blue);
 
     font-weight: normal;
+}
+
+/* --------------------- Links and Buttons */
+a {
+    color: var(--color-button);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-button-hover)
+}
+
+.button.new {
+    display: inline-block;
+    margin-bottom: 0.8rem;
 }
 
 /* ---------------------Header */
@@ -69,6 +104,10 @@ header {
 .card h3 {
     font-weight: normal;
     font-size: 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .card p {
@@ -85,9 +124,13 @@ header {
 
 /* ---------------------Table */
 #data-table {
+    display: block;
+
     width: 100%;
     border-spacing: 0 0.5rem;
     color: var(--light-pink);
+
+    overflow-x: auto;
 }
 
 table tbody tr {
@@ -117,6 +160,11 @@ table tbody tr td:first-child {
     border-radius: 0.25rem 0 0 0.25rem;
 }
 
+table thead tr th:last-child, 
+table tbody tr td:last-child {
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
 td.description {
     color: var(--dark-blue);
 }
@@ -138,4 +186,19 @@ footer {
     color: var(--dark-blue);
     
     opacity: 0.6;
+}
+
+/* --------------------- Responsive */
+
+@media ( min-width: 800px ) {
+    html {
+        font-size: 87.5%;
+    }
+
+    #balance {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 2rem; /*espaçamento de 2rem*/
+    }
 }
