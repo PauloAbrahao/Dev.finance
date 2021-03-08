@@ -51,7 +51,7 @@
         <section id="transaction" class="description">
             <h2 class="sr-only">Transações</h2>
 
-            <a href="#" class="button new">+ Nova transação</a>
+            <a href="#" class="button new" onclick="modal.open()">+ Nova transação</a>
 
             <table id="data-table">
                 <thead>
@@ -93,9 +93,75 @@
         </section>
     </main>
 
+    <div class="modal-overlay"> <!--Background escuro transparente-->
+        <div class="modal"> <!--Caixa Modal-->
+                <div id="form">
+                    <h2>Nova Transação</h2>
+                    <form action="">
+                        <div class="input-group">
+
+                            <label class="sr-only" for="description">
+                                Descrição
+                            </label> <!--Requer o id do input desejado-->
+
+                            <input type="text"id="description" name="description" placeholder="Descrição">
+                        </div>
+
+                        <div class="input-group">
+                            <label class="sr-only" for="amount">
+                                Valor
+                            </label> <!--Requer o id do input desejado-->
+
+                            <input type="number"id="amount" name="amount" placeholder="0,00" step="0.01">
+
+                            <small class="help"> Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais </small>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="sr-only" for="date">
+                                Descrição
+                            </label> <!--Requer o id do input desejado-->
+
+                            <input type="date"id="date" name="date">
+                        </div>
+
+                        <div class="input-group actions">
+                            <a href="#" class="button cancel" onclick="modal.close()"> Cancelar</a>
+
+                            <button type="submit">
+                                Salvar
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+        </div>
+    </div>
+
     <footer>
         <p>Criado por Paulo Abrahão - Maratona Discover</p>
     </footer>
+
+    <script>
+        const modal = {
+            open() {
+                // Abrir modal
+                // Adicionar a class active ao modal
+                document
+                .querySelector('.modal-overlay')
+                .classList
+                .add('active')
+            },
+            close() {
+                // Fechar o modal
+                // Remover a class active do modal
+                document
+                .querySelector('.modal-overlay')
+                .classList
+                .remove('active')
+            }
+        }
+    </script>
 
 </body>
 
