@@ -19,40 +19,74 @@ const modal = {
 
 const transactions = [
     {
-        id: 1,
         description: 'Design',
-        amount: 400000,
+        amount: 39900,
         date: '28/02/2021'
     },
     {
-        id: 2,
         description: 'Internet',
-        amount: -20000,
+        amount: -20012,
         date: '28/02/2021'
     },    
     {
-        id: 3,
         description: 'Steam',
         amount: -4000,
         date: '28/02/2021'
     },
     {
-        id: 4,
         description: 'Varejo',
-        amount: -8900,
+        amount: -8999,
         date: '17/03/2021'
     },
 ]
 
 const Transaction = {
+    all: transactions,
+
+    add(transaction) {
+        Transaction.all.push(transaction)
+
+        App.reload();
+    },
+
+    remove(index) {
+        Transaction.all.splice(index, 1)
+
+        App.reload();
+    },
+
     incomes() {
-        // Somar as entradas
+        let income = 0;
+        // Pega todas as transações
+        // Para cada transação,
+        Transaction.all.forEach(transaction => {
+            //se o valor for > 0
+            if (transaction.amount > 0) {
+                // Somar a uma variável e retornar essa variável
+                income += transaction.amount
+            }
+        })
+        
+        return income
     },
+    
     expenses() {
-        // Somar as saídas
+        let expense = 0;
+        // Pega todas as transações
+        // Para cada transação,
+        Transaction.all.forEach(transaction => {
+            //se o valor for < 0
+            if (transaction.amount < 0) {
+                // Somar a uma variável e retornar essa variável
+                expense += transaction.amount
+            }
+        })
+        
+        return expense
     },
+    
     total() {
-        // Entradas - saídas
+        return Transaction.incomes() + Transaction.expenses();
     }
 
 }
@@ -66,6 +100,7 @@ const DOM = {
 
         DOM.transactionsContainer.appendChild(tr)
     },
+
     innerHTMLTransaction(transaction) {
 
         const CSSclass = transaction.amount > 0 ? "income" : "expense"
@@ -77,7 +112,7 @@ const DOM = {
         const html = 
         `
             <td class="description">${transaction.description}</td>
-            <td class="${CSSclass}"> ${transaction.amount}</td>
+            <td class="${CSSclass}"> ${amount}</td>
             <td class="date">${transaction.date}</td>
             <td>
                 <img src="./assets/minus.svg" alt="Remover transação">
@@ -85,15 +120,62 @@ const DOM = {
         `
 
         return html;
+    },
+
+    updateBalance() {
+        document
+            .getElementById('incomeDisplay')
+            .innerHTML = Utils.formatCurrency(Transaction.incomes());
+        document
+            .getElementById('expenseDisplay')
+            .innerHTML = Utils.formatCurrency(Transaction.expenses());
+        document
+            .getElementById('totalDisplay')
+            .innerHTML = Utils.formatCurrency(Transaction.total());
+    },
+
+    clearTransactions() {
+        DOM.transactionsContainer.innerHTML = ""
     }
 }
 
 const Utils = {
     formatCurrency(value) {
         const signal = Number(value) < 0 ? "-" : ""
+
+        // "/ /" é uma expressão regular, o uso do "\D" é
+        // para ele procurar por tudo que não for número e 
+        // substituir pelo que estiver entre as aspas " "
+        value = String(value).replace(/\D/g, "") 
+
+        value = Number(value) / 100
+
+        value = value.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        })
+
+        return signal + value
     }
 }
 
-transactions.forEach(function(transaction) {
-    DOM.addTransaction(transaction)
-})
+
+const App = {
+    init() {
+        Transaction.all.forEach(transaction => {
+            DOM.addTransaction(transaction)
+        })
+
+        DOM.updateBalance();
+    },
+
+    reload() {
+        DOM.clearTransactions(),
+        App.init()
+    }
+}
+
+App.init()
+
+Transaction.remove(0)
+
