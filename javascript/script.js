@@ -153,9 +153,10 @@ const DOM = {
 
 const Utils = {
     formatAmount(value) { //Expressão Regular = tira as vírgulas e pontos
-        value = Number(value.replace(/\,\./g, "")) * 100
+        /*value = Number(value.replace(/\,\./g, "")) * 100*/
+        value = value * 100  
         
-        return value
+        return Math.round(value)
     },
 
     formatDate(date) {
